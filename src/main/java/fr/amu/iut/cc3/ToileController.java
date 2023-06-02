@@ -64,17 +64,46 @@ public class ToileController implements Initializable {
         inptCinq.clear();
         inptSix.clear();
         toile.getChildren().clear();
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
 
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
 
     }
 
+    public void viderline(){
+        toile.getChildren().remove(11);
+        toile.getChildren().remove(10);
+        toile.getChildren().remove(9);
+        toile.getChildren().remove(8);
+        toile.getChildren().remove(7);
+        toile.getChildren().remove(6);
+
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+    }
+
     public void tracer() {
+
 
         if (fixedList.get(0) != null && fixedList.get(1) != null) {
             Line l1 = new Line(fixedList.get(0).getCenterX(), fixedList.get(0).getCenterY(),
                     fixedList.get(1).getCenterX(), fixedList.get(1).getCenterY());
             l1.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l1);
+            toile.getChildren().set(6,l1);
 
         }
 
@@ -83,7 +112,7 @@ public class ToileController implements Initializable {
             Line l2 = new Line(fixedList.get(1).getCenterX(), fixedList.get(1).getCenterY(),
                     fixedList.get(2).getCenterX(), fixedList.get(2).getCenterY());
             l2.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l2);
+            toile.getChildren().set(7,l2);
 
         }
 
@@ -92,7 +121,7 @@ public class ToileController implements Initializable {
             Line l3 = new Line(fixedList.get(2).getCenterX(), fixedList.get(2).getCenterY(),
                     fixedList.get(3).getCenterX(), fixedList.get(3).getCenterY());
             l3.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l3);
+            toile.getChildren().set(8,l3);
 
         }
 
@@ -101,7 +130,7 @@ public class ToileController implements Initializable {
             Line l4 = new Line(fixedList.get(3).getCenterX(), fixedList.get(3).getCenterY(),
                     fixedList.get(4).getCenterX(), fixedList.get(4).getCenterY());
             l4.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l4);
+            toile.getChildren().set(9,l4);
 
         }
 
@@ -110,14 +139,14 @@ public class ToileController implements Initializable {
             Line l5 = new Line(fixedList.get(4).getCenterX(), fixedList.get(4).getCenterY(),
                     fixedList.get(5).getCenterX(), fixedList.get(5).getCenterY());
             l5.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l5);
+            toile.getChildren().set(10,l5);
         }
         if (fixedList.get(5) != null && fixedList.get(0) != null) {
 
             Line l6 = new Line(fixedList.get(5).getCenterX(), fixedList.get(5).getCenterY(),
                     fixedList.get(0).getCenterX(), fixedList.get(0).getCenterY());
             l6.setStyle("-fx-stroke: black;");
-            toile.getChildren().add(l6);
+            toile.getChildren().set(11,l6);
         }
 
 
@@ -129,6 +158,22 @@ public class ToileController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         errorText.setVisible(false);
         errorText2.setVisible(false);
+
+        toile.getChildren().clear();
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+        toile.getChildren().add(new Circle());
+
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+        toile.getChildren().add(new Line());
+
         inptUn.setOnKeyPressed(event ->
         {
 
@@ -147,8 +192,16 @@ public class ToileController implements Initializable {
 
                     fixedList.set(0, point);
 
-                    toile.getChildren().add(point);
-                } else {
+                    toile.getChildren().set(0,point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(0)!=null) {
+                    value = Double.parseDouble(inptUn.getText());
+
+                    fixedList.get(0).setCenterX(getXRadarChart(value, 1));
+                    fixedList.get(0).setCenterY(getYRadarChart(value, 1));
+                    toile.getChildren().set(0,fixedList.get(0));
+                    viderline();
+                    tracer();
+                }else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
                 }
@@ -172,8 +225,16 @@ public class ToileController implements Initializable {
 
                     fixedList.set(1, point);
 
-                    toile.getChildren().add(point);
-                } else {
+                    toile.getChildren().set(1,point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(1)!=null) {
+                    value = Double.parseDouble(inptDeux.getText());
+
+                    fixedList.get(1).setCenterX(getXRadarChart(value, 2));
+                    fixedList.get(1).setCenterY(getYRadarChart(value, 2));
+                    toile.getChildren().set(1,fixedList.get(1));
+                    viderline();
+                    tracer();
+                }else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
                 }
@@ -195,8 +256,16 @@ public class ToileController implements Initializable {
 
                     fixedList.set(2, point);
 
-                    toile.getChildren().add(point);
-                } else {
+                    toile.getChildren().set(2,point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(2)!=null) {
+                    value = Double.parseDouble(inptTrois.getText());
+
+                    fixedList.get(2).setCenterX(getXRadarChart(value, 3));
+                    fixedList.get(2).setCenterY(getYRadarChart(value, 3));
+                    toile.getChildren().set(2,fixedList.get(2));
+                    viderline();
+                    tracer();
+                }else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
                 }
@@ -218,8 +287,16 @@ public class ToileController implements Initializable {
 
                     fixedList.set(3, point);
 
-                    toile.getChildren().add(point);
-                } else {
+                    toile.getChildren().set(3,point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(3)!=null) {
+                    value = Double.parseDouble(inptQuatre.getText());
+
+                    fixedList.get(3).setCenterX(getXRadarChart(value, 4));
+                    fixedList.get(3).setCenterY(getYRadarChart(value, 4));
+                    toile.getChildren().set(3,fixedList.get(3));
+                    viderline();
+                    tracer();
+                }else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
                 }
@@ -241,8 +318,16 @@ public class ToileController implements Initializable {
 
                     fixedList.set(4, point);
 
-                    toile.getChildren().add(point);
-                } else {
+                    toile.getChildren().set(4,point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(4)!=null) {
+                    value = Double.parseDouble(inptCinq.getText());
+
+                    fixedList.get(4).setCenterX(getXRadarChart(value, 5));
+                    fixedList.get(4).setCenterY(getYRadarChart(value, 5));
+                    toile.getChildren().set(4,fixedList.get(4));
+                    viderline();
+                    tracer();
+                }else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
                 }
@@ -265,6 +350,15 @@ public class ToileController implements Initializable {
                     fixedList.set(5, point);
 
                     toile.getChildren().add(point);
+                } else if (value <= 20 && value >= 0 && fixedList.get(5)!=null) {
+                    value = Double.parseDouble(inptSix.getText());
+
+                    fixedList.get(5).setCenterX(getXRadarChart(value, 6));
+                    fixedList.get(5).setCenterY(getYRadarChart(value, 6));
+
+                    toile.getChildren().set(5,fixedList.get(5));
+                    viderline();
+                    tracer();
                 } else {
                     errorText.setVisible(true);
                     errorText2.setVisible(true);
