@@ -31,6 +31,13 @@ public class ToileController implements Initializable {
     private static int angleDepart = 90;
     private static int noteMaximale = 20;
 
+    public void vider(){
+
+    }
+    public void tracer(){
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
